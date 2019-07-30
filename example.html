@@ -12,7 +12,7 @@
 </head>
 <body>
 <ul class="nav">
-    <li class="nav"><a href="example.html">Example</a></li>
+    <li class="nav"><a href="example.html">How it Works</a></li>
     <li class="nav"><a href="index.html">Dapp</a></li>
 </ul>
 
@@ -20,7 +20,7 @@
 
     <div><h1>Description</h1></div>
     <div><h1>Wallet Usages</h1></div>
-    <div><h1>Results</h1></div>
+    <div><h1>How it Works</h1></div>
 
 </div>
 
@@ -29,8 +29,10 @@
     <!--function explanation example code use-->
     <div>
         <ul>
-            <li>Click the button to test the wallet</li>
-            <li>You should see your wallet address.</li>
+            Step 1
+            <li>Click the button to test the Chrome web extension wallet. If you dont have it. Go to <a href="https://chrome.google.com/webstore/detail/waykimax/odaegfdpkolgbdaeibcebmibmibchbce">Chrome</a> Store
+            </li>
+
         </ul>
     </div>
     <div>
@@ -44,46 +46,50 @@
     </div>
 </div>
 
-<!--call or get your name from the contract-->
+
+<!--add your name to contract data-->
 <div class="grid">
     <div>
-        <ul>
-        <li> Call contract / call your name</li>
-            <li> Now we test our contract by calling a entered name</li>
-    </ul>
-      </div>
-    <div>
-            <input id="regid2" type="text" value="" placeholder="Contract Regid"/>
-            <input id="key" type="text" placeholder="your name or Key"/>
-        <button onclick="callName()">call name</button>
+        <ul>Step 2
+            <li> Enter a Name</li>
+            <li> Enter a quote & click Save</li>
+        </ul>
     </div>
     <div>
-        <p id="key2"></p>
-        <p id="value"></p>
+        <ol>
+
+            <li><input id="yourname" type="text" placeholder="your name"/></li>
+            <li><input id="yourage" type="text" placeholder="your quote"/></li>
+            <input id="regid" type="text" value="1022278-1" placeholder="Contract Regid"/>
+        </ol>
+
+        <button onclick="addName()">Save</button>
+    </div>
+    <div>
+        <p id="txid"></p>
     </div>
 </div>
 
 
-
- <!--add your name to contract data-->
+<!--call or get your name from the contract-->
 <div class="grid">
     <div>
-        <ul>
-            <li> Call contract / add your name & a quote</li>
-            <li>   Here you can enter your name to your deployed smart contract</li>
+        <ul>Step 3
+            <li>Search that name</li>
+            <li>Click Find</li>
         </ul>
-      </div>
-    <div>
-        <ol>
-            <li> <input id="regid" type="text"  placeholder="Contract Regid"/></li>
-            <li><input id="yourname" type="text" placeholder="your name"/></li>
-            <li> <input id="yourage" type="text" placeholder="your quote"/></li>
-        </ol>
-
-        <button onclick="addName()">call address</button>
     </div>
     <div>
-<p id="contractResults"></p>
+        <ol>
+            <li><input id="key" type="text" placeholder="your name"/></li>
+            <input id="regid2" type="text" value="1022278-1" placeholder="Contract Regid"/>
+
+        </ol>
+        <button onclick="callName()">Find</button>
+    </div>
+    <div>
+        <p id="key2"></p>
+        <p id="value"></p>
     </div>
 </div>
 
@@ -102,7 +108,8 @@
             function (res) {
                 console.log(res)
                 console.log(res.result.account.testnetAddress)
-                document.getElementById("address").innerHTML = `<p>Your address:</p><p>${res.result.account.testnetAddress}</p>`
+                document.getElementById("address").innerHTML =
+                    `<p>Your address:</p><p>${res.result.account.testnetAddress}</p>`
             },
             function (err) {
                 console.log(err)
@@ -122,7 +129,7 @@
                 "regid": regid2,
                 "returndatatype": "STRING"
             })
-            // return data and display data
+        // return data and display data
             .then(function (data) {
                 console.log(JSON.stringify(data));
                 JSON.stringify(document.getElementById("key2").innerHTML = `<p>Name: ${data.data.key} </p><p>value: ${data.data.value}</p>`);
@@ -152,8 +159,7 @@
     }
 
 
-
-// add name to contract data
+    // add name to contract data
     function addName() {
         var yourname = document.getElementById("yourname").value;
         var nameLen = yourname.length;
@@ -177,7 +183,7 @@
 
             },
             function (res) {
-                document.getElementById('contractResults').innerText = `<p class="results3">${res.result.txid}</p>`
+                document.getElementById('txid').innerHTML = `<p>txid</p><p style="font-size: 16px">${res.result.txid}</p>`
                 console.log(res)
                 console.log(res.result.txid)
 
