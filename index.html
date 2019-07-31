@@ -168,37 +168,6 @@
             .then(response => response.json()); // parses JSON response into native JavaScript objects
     }
 
-
-
-
-
-
-    //convert name and age and lengths into hex
-    function stringToHex(str1, str2, str3, str4) {
-        var hex1 = '';
-        var hex2 = '';
-        var hex3 = '';
-        var hex4 = '';
-
-        for (var i = 0; i < str1.length; i++) {
-            hex1 += '' + str1.charCodeAt(i).toString(16);
-        }
-
-        for (var i = 0; i < str2.length; i++) {
-            hex2 += '' + str2.charCodeAt(i).toString(16);
-        }
-        for (var i = 0; i < str3.length; i++) {
-            hex3 += '' + str3.charCodeAt(i).toString(16);
-        }
-
-        for (var i = 0; i < str4.length; i++) {
-            hex4 += '' + str4.charCodeAt(i).toString(16);
-        }
-
-        return hex1 + hex2 + hex3 + hex4;
-    }
-
-
     //convert name and age and lengths into hex
     function convertToHex(num1, str1, num2, str2) {
         var hex1 = '';
@@ -217,7 +186,6 @@
         for (var i = 0; i < str2.length; i++) {
             hex4 += '' + str2.charCodeAt(i).toString(16);
         }
-
         return hex1 + hex2 + hex3 + hex4;
     }
 </script>
